@@ -68,7 +68,7 @@ export default function Page() {
           Kunden <span className="text-sm">({allClients.length})</span>
         </h2>
 
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-4">
           <input
             placeholder="Kunde suchen"
             value={query}

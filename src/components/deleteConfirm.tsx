@@ -21,7 +21,7 @@ export default function DeleteConfirmationModal({
   if (!isOpen) return null; // Do not render the modal if it's not open
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center z-50">
       <div className="flex flex-col gap-5 bg-[#161616] p-6 rounded-lg shadow-md w-96 border border-gray-600/50 ">
         <div className="flex w-full justify-between ">
           <h2 className="text-xl font-semibold">{title} </h2>

@@ -28,7 +28,7 @@ const Pagination = ({ totalItems, pageSize }: PaginationProps) => {
     if (totalPages <= 1) return null; // No pagination needed if only one page
 
     return (
-        <div className="flex items-center justify-center gap-4 mt-6 ">
+        <div className="flex items-center justify-center gap-4 mt-6  z-10">
             {/* Previous Button */}
             <button
                 onClick={() => goToPage(currentPage - 1)}
