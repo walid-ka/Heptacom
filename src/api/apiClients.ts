@@ -1,15 +1,15 @@
-import { API_URL } from "@/lib/data";
+import { API_CUSTOMER } from "@/lib/data";
 import { NewClientProps } from "@/types/clientTypes";
 import toast from "react-hot-toast";
 
 //! Fetch all clients with optional search
 export async function getClients({ search = "" }: { search?: string } = {}) {
     try {
-        const response = await fetch(`${API_URL}?search=${encodeURIComponent(search)}`);
+        const response = await fetch(`${API_CUSTOMER}?search=${encodeURIComponent(search)}`);
         if (!response.ok) throw new Error("Failed to fetch clients");
 
         const data = await response.json();
-        console.log(data.data);
+
         return data.data;
     } catch (error) {
         toast.error("Failed to load clients!");
@@ -21,7 +21,7 @@ export async function getClients({ search = "" }: { search?: string } = {}) {
 //! Delete client
 export async function deleteClient(clientId: string) {
     try {
-        const response = await fetch(API_URL, {
+        const response = await fetch(API_CUSTOMER, {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ id: clientId }),
@@ -41,6 +41,7 @@ export async function deleteClient(clientId: string) {
 
 //! Create client
 export async function createClient(newClient: NewClientProps) {
+
     const clientList = await getClients();
     try {
         // Check if updating or creating
@@ -57,13 +58,11 @@ export async function createClient(newClient: NewClientProps) {
             }
         }
 
-        const response = await fetch(API_URL, {
+        const response = await fetch(API_CUSTOMER, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                ...newClient,
-                email: newClient.email,
-                phone_number: newClient.phone_number,
+                ...newClient
             }),
         });
 
@@ -82,13 +81,11 @@ export async function createClient(newClient: NewClientProps) {
 //! Update client
 export async function updateClient(updatedClient: NewClientProps) {
     try {
-        const response = await fetch(API_URL, {
+        const response = await fetch(API_CUSTOMER, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 ...updatedClient,
-                email: updatedClient.email,
-                phone_number: updatedClient.phone_number,
             }),
         });
 
@@ -103,3 +100,5 @@ export async function updateClient(updatedClient: NewClientProps) {
         console.error(error);
     }
 }
+
+//! Get single client

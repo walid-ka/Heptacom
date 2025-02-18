@@ -1,6 +1,8 @@
 import { Folder, House, Users, BookOpen } from "lucide-react";
 
-export const API_URL = "https://hcloud-resources.test/api.php";
+export const API_CUSTOMER = "https://hcloud-resources.test/api/customer.php";
+export const API_PROJECT = "https://hcloud-resources.test/api/project.php";
+export const API_RESOURCE = "https://hcloud-resources.test/api/resource.php";
 
 
 //! Nav links

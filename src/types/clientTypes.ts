@@ -1,8 +1,6 @@
 export type NewClientProps = {
     id?: string;
     name: string;
-    email: string;
-    phone_number: string;
     blanket_amount?: number;
     blanket_amount_warning?: number;
     billing_comment?: string;
@@ -11,8 +9,6 @@ export type NewClientProps = {
 export type Client = {
     id?: string;
     name: string;
-    email: string;
-    phone_number: string;
     blanket_amount: number;
     blanket_amount_warning: number;
     billing_comment?: string;

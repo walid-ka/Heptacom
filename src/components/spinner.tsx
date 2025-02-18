@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, CSSProperties } from "react";
 import BeatLoader from "react-spinners/BeatLoader";
 
@@ -8,12 +10,10 @@ const override: CSSProperties = {
 };
 
 function Spinner() {
-    let [loading, setLoading] = useState(true);
+    const [loading] = useState(true);
 
     return (
-        <div className="sweet-loading">
-
-
+        <div className="sweet-loading h-[60vh] w-full flex justify-center items-center">
             <BeatLoader
                 color={"#486ebe"}
                 loading={loading}

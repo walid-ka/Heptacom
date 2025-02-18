@@ -12,11 +12,13 @@ import useClients from "@/features/clients/useClients";
 import ClientForm from "@/features/clients/clientForm";
 
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 15;
 
 export default function Page() {
   const [query, setQuery] = useState("");
   const { isPending, error, allClients } = useClients(query);
+  const clientsNumber = allClients?.length;
+
 
   const [formOpen, setFormOpen] = useState(false);
   const [clientToEdit, setClientToEdit] = useState<NewClientProps | null>(null);
@@ -32,6 +34,7 @@ export default function Page() {
   const searchedClients = (allClients ?? []).filter((client: NewClientProps) =>
     client.name.toLowerCase().includes(query.toLowerCase())
   );
+
 
 
   //! Sorting services
@@ -65,7 +68,7 @@ export default function Page() {
     <div className="flex flex-col gap-8">
       <div className="flex w-full justify-between items-center">
         <h2 className="text-2xl font-bold bg-gradient-to-r from-white to-[#a5a5a5] bg-clip-text text-transparent">
-          Kunden <span className="text-sm">({allClients.length})</span>
+          Kunden <span className="text-sm">({clientsNumber})</span>
         </h2>
 
         <div className="flex items-center gap-4">
@@ -94,7 +97,7 @@ export default function Page() {
         </div>
       </div>
 
-      {allClients.length === 0 ? (
+      {allClients?.length === 0 ? (
         <div className="text-center mt-40 h-full text-gray-400">Kein Kunde gefunden</div>
       ) : (
 

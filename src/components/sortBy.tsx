@@ -38,7 +38,7 @@ const SortBy = ({ options }: SortByProps) => {
 
       {/* Dropdown Content */}
       {isOpen && (
-        <div className="absolute mt-2 w-[210px] bg-[#161616] border border-gray-600/50 shadow-md rounded-md">
+        <div className="absolute mt-2 w-[210px] bg-[#161616] border border-gray-600/50 shadow-md rounded-md z-20">
           <div className="p-2 text-sm font-semibold border-b">Sortieren nach</div>
           {options.map((option) => (
             <button
