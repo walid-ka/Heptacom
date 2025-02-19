@@ -12,7 +12,7 @@ import useClients from "@/features/clients/useClients";
 import ClientForm from "@/features/clients/clientForm";
 
 
-const PAGE_SIZE = 15;
+const PAGE_SIZE = 12;
 
 export default function Page() {
   const [query, setQuery] = useState("");
@@ -65,7 +65,7 @@ export default function Page() {
 
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 ">
       <div className="flex w-full justify-between items-center">
         <h2 className="text-2xl font-bold bg-gradient-to-r from-white to-[#a5a5a5] bg-clip-text text-transparent">
           Kunden <span className="text-sm">({clientsNumber})</span>

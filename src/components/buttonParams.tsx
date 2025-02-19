@@ -1,8 +1,7 @@
+import { ButtonParamsProps } from "@/types/buttonTypes"
 import { EllipsisVertical } from "lucide-react"
 
-type ButtonParamsProps = {
-    onClick: () => void; // Function type: It must be a function that takes no arguments and returns nothing (void)
-}
+
 
 const ButtonParams = ({ onClick }: ButtonParamsProps) => {
     return (

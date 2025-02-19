@@ -7,6 +7,9 @@ import ProjectTable from "@/features/projects/projectsTable";
 import useProjects from "@/features/projects/useProjects";
 import useClients from "@/features/clients/useClients";
 import Spinner from "@/components/spinner";
+import ProjectForm from "@/features/projects/projectForm";
+import { ProjectType } from "@/types/projectTypes";
+import { Client } from "@/types/clientTypes";
 
 export default function Page() {
   const [query, setQuery] = useState("");
@@ -17,13 +20,13 @@ export default function Page() {
   const [formOpen, setFormOpen] = useState(false)
 
   //! Filter Projects Based on Search Query
-  const searchedProjects = (allProjects ?? []).filter(project => project.name.toLowerCase().includes(query.toLowerCase()));
+  const searchedProjects = (allProjects ?? []).filter((project: ProjectType) => project.name.toLowerCase().includes(query.toLowerCase()));
 
   //! fetch only id and clients name
   const [clients, setClients] = useState([]);
   useEffect(() => {
     if (allClients) {
-      setClients(allClients.map((client) => ({ id: client.id, name: client.name })));
+      setClients(allClients.map((client: Client) => ({ id: client.id, name: client.name })));
     }
   }
     , [allClients]);
@@ -44,7 +47,9 @@ export default function Page() {
             value={query}
             onChange={e => setQuery(e.target.value)}
             className="max-w-sm w-[200px] bg-[#161616] placeholder:text-gray-500 px-2 py-[6px] border border-gray-600/50 rounded-md text-sm focus:outline-none" />
-          <Button openForm={setFormOpen} />
+
+
+          <Button openForm={() => setFormOpen(true)} />
         </div>
       </div>
 
@@ -56,6 +61,11 @@ export default function Page() {
 
         <ProjectTable allProjects={searchedProjects} clients={clients} />
       )}
+
+      {formOpen && (
+        <ProjectForm clients={allClients} formOpen={setFormOpen} title="Neuen Projekt hinzufügen" buttonText="Hinzufügen" />
+      )}
+
     </div>
   );
 }

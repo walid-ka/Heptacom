@@ -9,7 +9,7 @@ export default function useCreateClient() {
     const { isPending: isCreating, mutate: createClient } = useMutation({
         mutationFn: createClientApi,
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["clients"] });
+            queryClient.invalidateQueries({ queryKey: ["clients"] }); // to refetch the clients list
         },
         onError: (error) => {
             toast.error("An error occurred while creating client");

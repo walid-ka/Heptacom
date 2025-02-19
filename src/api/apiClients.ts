@@ -1,5 +1,5 @@
 import { API_CUSTOMER } from "@/lib/data";
-import { NewClientProps } from "@/types/clientTypes";
+import { Client, NewClientProps } from "@/types/clientTypes";
 import toast from "react-hot-toast";
 
 //! Fetch all clients with optional search
@@ -50,7 +50,7 @@ export async function createClient(newClient: NewClientProps) {
         // Ensure name is unique (only when creating a new client)
         if (!isUpdate) {
             const nameExists = clientList.some(
-                (client) => client.name.toLowerCase() === newClient.name.toLowerCase()
+                (client : Client) => client.name.toLowerCase() === newClient.name.toLowerCase()
             );
             if (nameExists) {
                 toast.error("Der Name muss eindeutig sein.");

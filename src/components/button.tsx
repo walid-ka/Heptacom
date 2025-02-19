@@ -1,15 +1,10 @@
 "use client";
 
+import { ButtonProps } from "@/types/buttonTypes";
 import { Plus } from "lucide-react";
 
 
-type ButtonProps = {
-  type?: "button" | "submit" | "reset";
-  buttonText?: string;
-  isCreating?: boolean;
-  isUpdating?: boolean;
-  openForm: (value: boolean) => void;
-};
+
 
 export default function Button({ openForm, type, isCreating, isUpdating, buttonText }: ButtonProps) {
   return (

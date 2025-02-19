@@ -5,6 +5,7 @@ import Logo from "@/components/logo";
 import MainNav from "@/components/mainNav";
 import { Toaster } from "react-hot-toast";
 import Provider from "@/utils/provider";
+import { GlobalStateProvider } from "@/utils/contextProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,11 +37,13 @@ export default function RootLayout({
             <Logo />
             <MainNav />
           </div>
-          <main className="p-16 pt-20 px-6 bg-[#2E2E2E] overflow-scroll w-full h-screen">
+          <main className=" px-16 pb-10 bg-[#2E2E2E] overflow-scroll w-full h-screen scrollbar-hide">
             <div className="max-w-[120rem] mx-0 my-auto flex flex-col gap-14 w-full">
-              <Provider>
-                {children}
-              </Provider>
+              <GlobalStateProvider>
+                <Provider>
+                  {children}
+                </Provider>
+              </GlobalStateProvider>
             </div>
           </main>
         </div>

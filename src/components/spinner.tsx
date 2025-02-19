@@ -18,7 +18,7 @@ function Spinner() {
                 color={"#486ebe"}
                 loading={loading}
                 cssOverride={override}
-                size={20}
+                size={15}
                 aria-label="Loading Spinner"
                 data-testid="loader"
             />

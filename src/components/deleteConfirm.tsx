@@ -1,14 +1,8 @@
+import { DeleteConfirmationModalProps } from "@/types/deleteConfirmationTypes";
 import { X } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 
-type DeleteConfirmationModalProps = {
-  isOpen: boolean;
-  onCancel: () => void;
-  onConfirm: () => void;
-  title: string;
-  message: string;
-  isDeleting: boolean;
-};
+
 
 export default function DeleteConfirmationModal({
   isOpen,
@@ -16,8 +10,12 @@ export default function DeleteConfirmationModal({
   onCancel,
   onConfirm,
   title,
-  message,
+  itemName,
+  deletedItem
 }: DeleteConfirmationModalProps) {
+
+  const [isChecked, setIsChecked] = useState(false);
+
   if (!isOpen) return null; // Do not render the modal if it's not open
 
   return (
@@ -29,7 +27,32 @@ export default function DeleteConfirmationModal({
             <X size={20} />
           </button>
         </div>
-        <p className="mt-2 text-sm ">{message}</p>
+        <p className="mt-2 text-sm">
+          Sind Sie sicher, dass Sie <span className="text-red-500 font-bold">**{itemName}**</span> löschen möchten?
+          <br />
+          Diese Aktion kann nicht rückgängig gemacht werden.
+          <br /> 
+          <br /> 
+          {deletedItem === "Client" ? (<>Alle zugehörigen <span className="text-red-500 font-bold">Projekte</span> werden ebenfalls gelöscht.</>) : ("")}
+        </p>
+
+        {/* Checkbox Confirmation */}
+        <div className="flex items-center gap-2 mt-2">
+          <input
+            type="checkbox"
+            id="confirmDelete"
+            checked={isChecked}
+            onChange={e => setIsChecked(e.target.checked)}
+            className="w-4 h-4 accent-red-500 cursor-pointer"
+          />
+
+          <label htmlFor="confirmDelete" className="text-sm text-gray-300">
+            Ich habe gelesen und stimme zu
+          </label>
+        </div>
+
+
+        {/* Action Buttons */}
         <div className="mt-4 flex justify-end gap-4">
           <button
             onClick={onCancel}
@@ -38,9 +61,10 @@ export default function DeleteConfirmationModal({
             Abbrechen
           </button>
           <button
-            disabled={isDeleting}
+            disabled={!isChecked || isDeleting}
             onClick={onConfirm}
-            className="bg-red-500 flex items-center justify-center rounded-md hover:bg-red-600/90 h-8 px-4 py-2 text-sm gap-3 text-white transition-all duration-150 ease-in-out"
+            className={`flex items-center justify-center rounded-md h-8 px-4 py-2 text-sm gap-3 text-white transition-all duration-150 ease-in-out ${isChecked ? "bg-red-500 hover:bg-red-600/90" : "bg-gray-500 cursor-not-allowed"
+              }`}
           >
             Bestätigen
           </button>

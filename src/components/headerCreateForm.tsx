@@ -8,7 +8,7 @@ type HeaderCreateFormProps = {
 
 const HeaderCreateForm = ({ title, formOpen }: HeaderCreateFormProps) => {
     return (
-        <div className="flex w-full justify-between pt-16 pb-8">
+        <div className="flex w-full justify-between pt-16 pb-8 px-5">
             <h2 className="text-xl font-semibold">{title}</h2>
             <button
                 onClick={() => formOpen(false)}

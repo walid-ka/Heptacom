@@ -1,24 +1,20 @@
 "use client";
 
-import useClickOutside from "@/hooks/useClickOutside";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+
+import { CreateClientFormProps, NewClientProps } from "@/types/clientTypes";
+import useClickOutside from "@/hooks/useClickOutside";
 import useCreateClient from "./useCreateClient";
 import useUpdateClient from "./useUpdateClient";
-import toast from "react-hot-toast";
-import { NewClientProps } from "@/types/clientTypes";
-import { useEffect } from "react";
 import Button from "@/components/button";
 import InputField from "@/components/inputField";
 import HeaderCreateForm from "@/components/headerCreateForm";
 
-type ClientFormProps = {
-    title: string;
-    formOpen: (open: boolean) => void;
-    clientToEdit?: NewClientProps | null;
-    buttonText?: string;
-};
 
-const ClientForm = ({ formOpen, title, clientToEdit, buttonText }: ClientFormProps) => {
+
+const ClientForm = ({ formOpen, title, clientToEdit, buttonText }: CreateClientFormProps) => {
     const { isCreating, createClient } = useCreateClient();
     const { isUpdating, updateClient } = useUpdateClient();
 
@@ -68,10 +64,10 @@ const ClientForm = ({ formOpen, title, clientToEdit, buttonText }: ClientFormPro
 
     return (
         <div className="fixed inset-0 flex justify-end z-50">
-            <div ref={formRef} className={`w-96 h-full bg-[#161616] border-l border-gray-500 shadow-md px-6 flex flex-col gap-4 `}>
+            <div ref={formRef} className={`w-96 h-full bg-[#161616] border-l border-gray-500 flex flex-col gap-4 `}>
                 <HeaderCreateForm formOpen={formOpen} title={title} />
 
-                <form className="flex flex-col h-full gap-14 pt-10" onSubmit={handleSubmit(onSubmit)}>
+                <form className="flex flex-col h-full gap-14 pt-10 mx-5" onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col gap-4">
                         <InputField
 
