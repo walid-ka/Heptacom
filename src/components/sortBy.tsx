@@ -30,7 +30,7 @@ const SortBy = ({ options }: SortByProps) => {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between gap-2 w-[150px] border border-gray-600/50 bg-[#161616] h-9 px-4 py-2 rounded-md text-sm "
+        className="flex items-center justify-between gap-2 w-[150px]  bg-[#161616] px-4 text-sm "
       >
         <span>Sortieren</span>
         <ChevronDown size={20} />

@@ -20,8 +20,8 @@ export default function DeleteConfirmationModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center z-50">
-      <div className="flex flex-col gap-5 bg-[#161616] p-6 rounded-lg shadow-md w-96 border border-gray-600/50 ">
-        <div className="flex w-full justify-between ">
+      <div className="flex flex-col gap-5 bg-[#161616] p-6 rounded-lg shadow-md w-96 border border-gray-600/50">
+        <div className="flex w-full justify-between">
           <h2 className="text-xl font-semibold">{title} </h2>
           <button onClick={onCancel} type="button" className="text-gray-500 hover:text-white transition-all duration-150 ease-in-out">
             <X size={20} />
@@ -31,8 +31,8 @@ export default function DeleteConfirmationModal({
           Sind Sie sicher, dass Sie <span className="text-red-500 font-bold">**{itemName}**</span> löschen möchten?
           <br />
           Diese Aktion kann nicht rückgängig gemacht werden.
-          <br /> 
-          <br /> 
+          <br />
+          <br />
           {deletedItem === "Client" ? (<>Alle zugehörigen <span className="text-red-500 font-bold">Projekte</span> werden ebenfalls gelöscht.</>) : ("")}
         </p>
 

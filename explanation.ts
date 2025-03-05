@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-//! src/spi/apiClient.ts
+//! src/api/apiClient.ts
 
 //! Fetch all clients, optionally filtering by search term
 export async function getClients({ search = "" }: { search?: string } = {}) {
@@ -255,13 +255,13 @@ export function useUpdateClient() {
 //  we need ID
 
 
-function ClientTable () {
-const { isDeleting, deleteClient } = useDeleteClient();
-const [selectedClient, setSelectedClient] = useState<string | null>(null);
-const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-const [clientToDelete, setClientToDelete] = useState<NewClientProps | null>(null);
+function ClientTable() {
+    const { isDeleting, deleteClient } = useDeleteClient();
+    const [selectedClient, setSelectedClient] = useState<string | null>(null);
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+    const [clientToDelete, setClientToDelete] = useState<NewClientProps | null>(null);
 
 
-return (<div>Content</div>)
+    return (<div>Content </div>)
 
 }

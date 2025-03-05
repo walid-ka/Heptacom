@@ -1,26 +1,34 @@
 "use client"
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Button from "@/components/button";
 import ClientTable from "@/features/clients/clientsTable";
 import Spinner from "@/components/spinner";
 import { useSearchParams } from "next/navigation";
 import Pagination from "@/components/pagination";
+import SearchModal from "@/components/searchModal";
 import SortBy from "@/components/sortBy";
 import { NewClientProps } from "@/types/clientTypes";
 import useClients from "@/features/clients/useClients";
 import ClientForm from "@/features/clients/clientForm";
+import { Command, Search } from "lucide-react";
+import { useEnterSearch } from "@/hooks/useEnterSearch";
+import { useOpenSearch } from "@/hooks/useOpenSearch";
 
 
 const PAGE_SIZE = 12;
 
 export default function Page() {
+  const [selectedId, setSelectedId] = useState("wqrrwq")
   const [query, setQuery] = useState("");
-  const { isPending, error, allClients } = useClients(query);
+  const { isPending, error, allClients } = useClients(query); //! All Clients
   const clientsNumber = allClients?.length;
+  const callSearch = useRef(null)
+
 
 
   const [formOpen, setFormOpen] = useState(false);
+  const [searchModalOpen, setSearchModalOpen] = useState(false)
   const [clientToEdit, setClientToEdit] = useState<NewClientProps | null>(null);
 
 
@@ -28,6 +36,29 @@ export default function Page() {
   const currentPage = Number(searchParams.get("page")) || 1;
   const sortBy = searchParams.get("sortBy") || "";
 
+  const closeSearchModal = () => {
+    setSearchModalOpen(false)
+  }
+
+  // useEffect(() => {
+  //   const callBack = (e) => {
+  //     if (e.code === "Enter") {
+  //       callSearch.current?.focus();
+  //     }
+  //   }
+
+  //   console.log(callSearch)
+
+  //   document.addEventListener("keydown", callBack);
+  //   return () => document.removeEventListener("keydown", callBack)
+  // }, [])
+
+
+  //! when u click on "Enter" it focus on the search input
+  useEnterSearch(callSearch)
+
+  //! when u click on "Command + S" it opens the Search Modal
+  useOpenSearch(setSearchModalOpen)
 
 
   //! Filter Clients Based on Search Query
@@ -71,30 +102,53 @@ export default function Page() {
           Kunden <span className="text-sm">({clientsNumber})</span>
         </h2>
 
-        <div className="flex items-center gap-4">
-          <input
-            placeholder="Kunde suchen"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            className="max-w-sm w-[200px] bg-[#161616] placeholder:text-gray-500 px-2 py-[6px] border border-gray-600/50 rounded-md text-sm focus:outline-none"
-          />
+        <div className="rounded-lg border flex items-center bg-[#161616] border-gray-600/50 p-1">
+          <div>
+            <input
+              ref={callSearch}
+              placeholder="Kunde suchen"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              className="max-w-sm w-[200px] bg-[#161616] mx-2 placeholder:text-gray-500 px-2 py-[6px] text-sm focus:outline-none"
+            />
+          </div>
 
-          <SortBy
-            options={[
-              { label: "All", value: "all" },
-              { value: "name-asc", label: "Name (A-Z)" },
-              { value: "name-desc", label: "Name (Z-A)" },
-              { value: "PauschalBetrag-asc", label: "niedrig (Pauschal Betrag)" },
-              { value: "PauschalBetrag-desc", label: "hoch (Pauschal Betrag)" },
-            ]}
-          />
+          <div>
+            <button
+              className="flex items-center gap-2 px-2 text-white/50 hover:text-white transition-all duration-150 ease-in-out"
+              onClick={() => setSearchModalOpen(!searchModalOpen)}
+            >
+              <Search size={20} />
+              <span className="flex items-center"><Command size={13} />s</span>
+            </button>
+          </div>
 
-          <Button openForm={() => {
-            setClientToEdit(null);
-            setFormOpen(true);
-          }} />
+          {/* Separator */}
+          <div className="w-px h-6 bg-gray-600/50 mx-2"></div>
 
+          <div>
+            <SortBy
+              options={[
+                { label: "All", value: "all" },
+                { value: "name-asc", label: "Name (A-Z)" },
+                { value: "name-desc", label: "Name (Z-A)" },
+                { value: "PauschalBetrag-asc", label: "niedrig (Pauschal Betrag)" },
+                { value: "PauschalBetrag-desc", label: "hoch (Pauschal Betrag)" },
+              ]}
+            />
+          </div>
+
+          {/* Separator */}
+          <div className="w-px h-6 bg-gray-600/50 mx-2"></div>
+
+          <div>
+            <Button openForm={() => {
+              setClientToEdit(null);
+              setFormOpen(true);
+            }} />
+          </div>
         </div>
+
       </div>
 
       {allClients?.length === 0 ? (
@@ -113,6 +167,10 @@ export default function Page() {
         />
       )}
       <Pagination totalItems={sortedClients.length} pageSize={PAGE_SIZE} />
+
+      {searchModalOpen && (
+        <SearchModal closeSearchModal={closeSearchModal} />
+      )}
 
 
     </div>
