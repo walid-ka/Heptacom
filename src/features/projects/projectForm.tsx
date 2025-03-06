@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import useCreateProject from "./useCreateProject";
 import { CreateProjectFormProps, NewProjectProps } from "@/types/projectTypes";
 
-const ProjectForm = ({ formOpen, title, clients }: CreateProjectFormProps) => {
+const ProjectForm = ({ formOpen, title, clients = [] }: CreateProjectFormProps) => {
 
     const { isCreating, createProject } = useCreateProject();
 

@@ -18,12 +18,12 @@ import { useOpenSearch } from "@/hooks/useOpenSearch";
 
 const PAGE_SIZE = 12;
 
+
 export default function Page() {
-  const [selectedId, setSelectedId] = useState("wqrrwq")
   const [query, setQuery] = useState("");
   const { isPending, error, allClients } = useClients(query); //! All Clients
   const clientsNumber = allClients?.length;
-  const callSearch = useRef(null)
+  const callSearch = useRef<HTMLInputElement | null>(null)
 
 
 
@@ -40,19 +40,6 @@ export default function Page() {
     setSearchModalOpen(false)
   }
 
-  // useEffect(() => {
-  //   const callBack = (e) => {
-  //     if (e.code === "Enter") {
-  //       callSearch.current?.focus();
-  //     }
-  //   }
-
-  //   console.log(callSearch)
-
-  //   document.addEventListener("keydown", callBack);
-  //   return () => document.removeEventListener("keydown", callBack)
-  // }, [])
-
 
   //! when u click on "Enter" it focus on the search input
   useEnterSearch(callSearch)
@@ -63,7 +50,7 @@ export default function Page() {
 
   //! Filter Clients Based on Search Query
   const searchedClients = (allClients ?? []).filter((client: NewClientProps) =>
-    client.name.toLowerCase().includes(query.toLowerCase())
+    client.name.toLowerCase().startsWith(query.toLowerCase())
   );
 
 
@@ -91,8 +78,6 @@ export default function Page() {
 
   if (isPending) return <Spinner />;
   if (error) return <div className="text-center text-red-500">{error.message}</div>;
-
-
 
 
   return (

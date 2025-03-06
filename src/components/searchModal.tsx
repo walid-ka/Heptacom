@@ -6,7 +6,11 @@ import { Search } from "lucide-react";
 import { useEffect, useRef } from "react"
 
 
-const SearchModal = ({ closeSearchModal }) => {
+type SearchModalProps = {
+    closeSearchModal: () => void
+}
+
+const SearchModal = ({ closeSearchModal }: SearchModalProps) => {
 
     //! closing by "clicking outside the search"
     const dropdownRef = useClickOutside(closeSearchModal);
@@ -16,7 +20,7 @@ const SearchModal = ({ closeSearchModal }) => {
 
 
     //! the cursor will be focused once the searchModal is open
-    const searchRef = useRef(null)
+    const searchRef = useRef<HTMLInputElement | null>(null)
 
     useEffect(function () {
         searchRef.current?.focus();

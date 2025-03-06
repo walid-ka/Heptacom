@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import { HiOutlineCog6Tooth } from "react-icons/hi2";
-import Button from "./button";
 import { usePathname } from "next/navigation";
 import { navLinks } from "@/lib/data";
 
@@ -39,7 +38,7 @@ export default function MainNav() {
             </div>
           </Link>
 
-          <Button name="Projekt" />
+          {/* <Button buttonText="Project" /> */}
         </div>
 
       </ul>

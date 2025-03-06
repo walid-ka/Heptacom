@@ -18,8 +18,8 @@ export type Client = {
 
 export type ClientsTableProps = {
     allClients: NewClientProps[];
-    clients: NewClientProps[];
-    onDeleteClient: (id: string) => void;
+    clients?: NewClientProps[];
+    onDeleteClient?: (id: string) => void;
 };
 
 export type CreateClientFormProps = {

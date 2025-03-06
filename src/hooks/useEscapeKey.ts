@@ -1,11 +1,11 @@
 "use client"
 import { useEffect } from "react"
 
-export function useEscapeKey(key, action) {
+export function useEscapeKey(key: string, action: () => void) {
 
     useEffect(() => {
 
-        const callBack = (e) => {
+        const callBack = (e: KeyboardEvent) => {
             if (e.code.toLowerCase() === key.toLowerCase()) action()
         }
 

@@ -1,3 +1,5 @@
+"use client";
+
 import { DeleteConfirmationModalProps } from "@/types/deleteConfirmationTypes";
 import { X } from "lucide-react";
 import React, { useState } from "react";
@@ -20,7 +22,7 @@ export default function DeleteConfirmationModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center z-50">
-      <div className="flex flex-col gap-5 bg-[#161616] p-6 rounded-lg shadow-md w-96 border border-gray-600/50">
+      <div className="flex flex-col gap-5 bg-background-main  p-6 rounded-lg shadow-md w-96 border border-borderColor">
         <div className="flex w-full justify-between">
           <h2 className="text-xl font-semibold">{title} </h2>
           <button onClick={onCancel} type="button" className="text-gray-500 hover:text-white transition-all duration-150 ease-in-out">
@@ -28,12 +30,12 @@ export default function DeleteConfirmationModal({
           </button>
         </div>
         <p className="mt-2 text-sm">
-          Sind Sie sicher, dass Sie <span className="text-red-500 font-bold">**{itemName}**</span> löschen möchten?
+          Sind Sie sicher, dass Sie <span className="text-redColor font-bold">**{itemName}**</span> löschen möchten?
           <br />
           Diese Aktion kann nicht rückgängig gemacht werden.
           <br />
           <br />
-          {deletedItem === "Client" ? (<>Alle zugehörigen <span className="text-red-500 font-bold">Projekte</span> werden ebenfalls gelöscht.</>) : ("")}
+          {deletedItem === "Client" ? (<>Alle zugehörigen <span className="text-redColor font-bold">Projekte</span> werden ebenfalls gelöscht.</>) : ("")}
         </p>
 
         {/* Checkbox Confirmation */}
@@ -43,7 +45,7 @@ export default function DeleteConfirmationModal({
             id="confirmDelete"
             checked={isChecked}
             onChange={e => setIsChecked(e.target.checked)}
-            className="w-4 h-4 accent-red-500 cursor-pointer"
+            className="w-4 h-4 accent-redColor cursor-pointer"
           />
 
           <label htmlFor="confirmDelete" className="text-sm text-gray-300">
@@ -63,7 +65,7 @@ export default function DeleteConfirmationModal({
           <button
             disabled={!isChecked || isDeleting}
             onClick={onConfirm}
-            className={`flex items-center justify-center rounded-md h-8 px-4 py-2 text-sm gap-3 text-white transition-all duration-150 ease-in-out ${isChecked ? "bg-red-500 hover:bg-red-600/90" : "bg-gray-500 cursor-not-allowed"
+            className={`flex items-center justify-center rounded-md h-8 px-4 py-2 text-sm gap-3 text-white transition-all duration-150 ease-in-out ${isChecked ? "bg-redColor hover:bg-redColor/90" : "bg-gray-500 cursor-not-allowed"
               }`}
           >
             Bestätigen

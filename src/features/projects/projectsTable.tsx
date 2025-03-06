@@ -1,17 +1,15 @@
-
-
 import ButtonParams from "@/components/buttonParams";
 import ParamsModal from "@/components/paramsModal";
 import TableHeader from "@/components/tableHeader";
 import { NewProjectProps, ProjectTableProps } from "@/types/projectTypes";
 import useDeleteProject from "./useDeleteProject";
 import DeleteConfirmationModal from "@/components/deleteConfirm";
-import { useGlobalState } from "@/utils/contextProvider";
+import { useGlobalState } from "@/provider/contextProvider";
 
 
 
 export default function ProjectTable({ allProjects, clients }: ProjectTableProps) {
-    const { selectedItem, setSelectedItem, deleteModalOpen, setDeleteModalOpen, itemToDelete, setItemToDelete, itemToEdit, setItemToEdit, formOpen, setFormOpen } = useGlobalState()
+    const { selectedItem, setSelectedItem, deleteModalOpen, setDeleteModalOpen, itemToDelete, setItemToDelete, setItemToEdit, setFormOpen } = useGlobalState()
     const { isDeleting, deleteProject } = useDeleteProject();
 
 

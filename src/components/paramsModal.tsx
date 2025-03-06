@@ -3,7 +3,14 @@ import ButtonEditDelete from "./buttonEditDelete"
 import useClickOutside from "@/hooks/useClickOutside";
 
 
-const ParamsModal = ({ isOpen, onUpdateItem, confirmDeleteItem, closeModal }) => {
+type ParamsModelProps = {
+    isOpen: boolean,
+    onUpdateItem: () => void,
+    confirmDeleteItem: () => void,
+    closeModal: () => void,
+}
+
+const ParamsModal = ({ isOpen, onUpdateItem, confirmDeleteItem, closeModal }: ParamsModelProps) => {
     const dropdownRef = useClickOutside(closeModal);
 
     if (!isOpen) return null;

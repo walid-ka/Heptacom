@@ -7,11 +7,11 @@ import ClientForm from "./clientForm";;
 import ButtonParams from "@/components/buttonParams";
 import ParamsModal from "@/components/paramsModal";
 import TableHeader from "@/components/tableHeader";
-import { useGlobalState } from "@/utils/contextProvider";
+import { useGlobalState } from "@/provider/contextProvider";
 
 export default function ClientTable({ allClients }: ClientsTableProps) {
 
-    const {selectedItem, setSelectedItem, deleteModalOpen, setDeleteModalOpen, itemToDelete, setItemToDelete, itemToEdit, setItemToEdit, formOpen, setFormOpen} = useGlobalState()
+    const { selectedItem, setSelectedItem, deleteModalOpen, setDeleteModalOpen, itemToDelete, setItemToDelete, itemToEdit, setItemToEdit, formOpen, setFormOpen } = useGlobalState()
     const { isDeleting, deleteClient } = useDeleteClient();
 
 
@@ -62,7 +62,7 @@ export default function ClientTable({ allClients }: ClientsTableProps) {
                 <tbody>
                     {allClients.map((client) => (
                         <tr key={client.id || client.name}>
-                            <td className="border-b border-gray-600/50 px-4 py-4 text-sm font-semibold">{client.name}</td>
+                            <td className="border-b border-gray-600/50 px-4 py-4 text-sm font-semibold cursor-pointer transition-all ease-in-out duration-150">{client.name}</td>
                             <td className="border-b border-gray-600/50 px-4 py-4 text-sm">{client.blanket_amount ? formatCurrency(client.blanket_amount) : "—"}</td>
                             <td className="border-b border-gray-600/50 px-4 py-4 text-sm">{client.blanket_amount_warning ? formatCurrency(client.blanket_amount_warning) : "—"}</td>
                             <td className="border-b border-gray-600/50 px-4 py-4 text-sm">{client.billing_comment || "—"}</td>

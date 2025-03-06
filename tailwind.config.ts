@@ -9,8 +9,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
+        redColor: "#ef4444",
+        borderColor: 'rgb(75 85 99 / 0.5)',
+        background: {
+          main: "#161616",
+          secondary: "#2E2E2E"
+        },
+
         foreground: "var(--foreground)",
+        primary: "#3b82f6"
       },
       keyframes: {
         "slide-in": {

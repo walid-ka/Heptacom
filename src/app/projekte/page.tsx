@@ -20,7 +20,7 @@ export default function Page() {
   const [formOpen, setFormOpen] = useState(false)
 
   //! Filter Projects Based on Search Query
-  const searchedProjects = (allProjects ?? []).filter((project: ProjectType) => project.name.toLowerCase().includes(query.toLowerCase()));
+  const searchedProjects = (allProjects ?? []).filter((project: ProjectType) => project.name.toLowerCase().startsWith(query.toLowerCase()));
 
   //! fetch only id and clients name
   const [clients, setClients] = useState([]);

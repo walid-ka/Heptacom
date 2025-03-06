@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 
-export function useOpenSearch(setSearchModalOpen) {
-    useEffect(function () {
+export function useOpenSearch(setSearchModalOpen: (open: boolean) => void) {
+    useEffect(() => {
 
-        const callBack = (e) => {
+        const callBack = (e: KeyboardEvent) => {
             if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s") {
                 e.preventDefault(); // Prevents the default browser "Save Page" action
-                setSearchModalOpen(true)
+                setSearchModalOpen(true);
             }
         }
 
