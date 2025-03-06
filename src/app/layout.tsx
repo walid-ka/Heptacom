@@ -55,7 +55,7 @@ export default function RootLayout({
             <MainNav />
           </aside>
           <main className=" px-16 pb-10 bg-background-secondary overflow-scroll w-full h-screen scrollbar-hide">
-            <div className="max-w-[120rem] mx-0 my-auto flex flex-col gap-14 w-full">
+            <div className="max-w-[120rem] mt-10 flex flex-col gap-14 w-full">
               <GlobalStateProvider>
                 <Provider>
                   {children}
